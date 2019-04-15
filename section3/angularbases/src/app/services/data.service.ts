@@ -12,8 +12,6 @@ export class DataService {
 
   getPost() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts')
-      .pipe(
-        tap(console.log)
-      );
+      .pipe(tap(console.log));
   }
 }
