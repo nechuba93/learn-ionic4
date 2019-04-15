@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+
+interface Post {
+  body: string;
+  id: number;
+  title: string;
+  userId: number;
+}
 
 @Component({
   selector: 'app-posts',
@@ -7,9 +15,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  mensajes: Post[] = [];
+
+  constructor( private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.getPost().subscribe( (posts: Post[]) => {
+      this.mensajes = posts;
+    });
   }
 
 }
